@@ -1,10 +1,10 @@
 #!/bin/bash
 
-REASONING_MODEL_PATH="model/VisionReasoner-7B"
+REASONING_MODEL_PATH="pretrained_models/VisionReasoner-7B"
 
 SEGMENTATION_MODEL_PATH="facebook/sam2-hiera-large"
 
-MODEL_DIR=$(echo $REASONING_MODEL_PATH | sed -E 's/.*vision_zero_workdir\/(.*)\/actor\/.*/\1/')
+MODEL_DIR=$(echo $REASONING_MODEL_PATH | sed -E 's/.*pretrained_models\/(.*)\/actor\/.*/\1/')
 #TEST_DATA_PATH="Ricky06662/ReasonSeg_test"
 TEST_DATA_PATH="Ricky06662/ReasonSeg_val"
 

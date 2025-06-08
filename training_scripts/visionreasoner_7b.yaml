@@ -39,8 +39,8 @@ worker:
 
   rollout:
     temperature: 1.0
-    tensor_parallel_size: 1
-    gpu_memory_utilization: 0.75
+    tensor_parallel_size: 2
+    gpu_memory_utilization: 0.6
     n: 8
     enable_chunked_prefill: true
 
