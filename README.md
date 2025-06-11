@@ -138,14 +138,17 @@ Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see
 
 ### 1. GRPO Training  
 
-> [!TIP]
-> The minimal training requirement for 7B model is a 4x40G GPUs server. 
+> [!NOTE]
+> The recommanded training requirement for 7B model is a 4x80G GPUs server.   
 
 Training Data: [🤗 MultiObject-1K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_1k_840)  [🤗 MultiObject-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)   
 Download dataset using this script: 
 ```bash
 python training_scripts/download_dataset.py
 ```
+
+> [!TIP]
+> Try resize the image and re-calculate the corresponding bbox/point coordinates if you have lower GPU memory. Remeber changing the corresponding resize_size in evaluation and inference.    
 
 Download pretrained models using the following scripts:
 ```bash
@@ -157,7 +160,7 @@ git clone https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
 
 Start training using this script:
 ```bash
-bash training_scripts/run_visionreasoner_7b_4x40G.sh
+bash training_scripts/run_visionreasoner_7b_4x80G.sh
 ```
 
 You can try change the following hyper-parameters if you have a large GPU memory.
