@@ -136,7 +136,11 @@ Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see
 
 ## Training
 
-### 1. GRPO Training
+### 1. GRPO Training  
+
+> [!NOTE]
+> The minimal training requirement is a 4x40G GPUs server. 
+
 Training Data: [🤗 MultiObject-1K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_1k_840)  [🤗 MultiObject-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)   
 Download dataset using this script: 
 ```bash
@@ -153,19 +157,24 @@ git clone https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
 
 Start training using this script:
 ```bash
-bash training_scripts/run_visionreasoner_7b.sh
+bash training_scripts/run_visionreasoner_7b_4x48G.sh
 ```
 
 You can try change the following hyper-parameters if you have a large GPU memory.
 ```bash
-worker.actor.micro_batch_size_per_device_for_update=4 or 8 or 16 \
-worker.actor.micro_batch_size_per_device_for_experience=4 or 8 or 16 \
+worker.actor.micro_batch_size_per_device_for_update=2 or 4 or 8 or 16 \
+worker.actor.micro_batch_size_per_device_for_experience=2 or 4 or 8 or 16 \
 ```
 If your GPU has less memory, you can change the following config. The number is depend on your GPU memory.
 ```bash
 worker.rollout.tensor_parallel_size=[your number between 1-8]
 worker.rollout.gpu_memory_utilization=[your number between 0-1]
 worker.rollout.n=[your number between 4-32]
+```
+
+If you have 8x140G GPUs, you can try: 
+```bash
+bash training_scripts/run_visionreasoner_7b.sh
 ```
 
 ### 2. Merge Checkpoint in Hugging Face Format
